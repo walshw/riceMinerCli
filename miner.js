@@ -18,38 +18,33 @@ process.stdin.on('keypress', (str, key) => {
 
 let timeoutCount = 0;
 
-// TODO: run multiple sessions
-// (async () => {
-//     const sesh = new Session();
-//     console.log(sesh.runningTotal);
-    
-//     const start = Date.now();
+const sesh = new Session();
+const start = Date.now();
+await sesh.init();
 
-//     await sesh.init();
+while (keepPlaying) {
+    await sesh.answerQuestion();
+    console.log(`${sesh.runningTotal}`);
 
-//     while (keepPlaying) {
-//         await sesh.answerQuestion();
-//         console.log(`${sesh.runningTotal}`);
+    // so basically I am sleeping one minute intervals to see if by making one request every minute can we get stuck into an infinite loop
+    // IE, is it a number of requests? or a timeout that will just get refreshed if you try talking to it to check
+    if (sesh.timedOut) {
+        timeoutCount++;
+        await sleep(60000);
+        console.log(`Times slept: ${timeoutCount}`);
+    } else {
+        timeoutCount = 0;
+    }
+}
 
-//         // so basically I am sleeping one minute intervals to see if by making one request every minute can we get stuck into an infinite loop
-//         // IE, is it a number of requests? or a timeout that will just get refreshed if you try talking to it to check
-//         if (sesh.timedOut) {
-//             timeoutCount++;
-//             await sleep(60000);
-//             console.log(`Times slept: ${timeoutCount}`);
-//         } else {
-//             timeoutCount = 0;
-//         }
-//     }
+// About a little less than 2k requests in about ~470s (7.8min)
+// 15 min cooldown
 
-//     // About a little less than 2k requests in about ~470s (7.8min)
-//     // 15 min cooldown
+const end = Date.now();
 
-//     const end = Date.now();
-
-//     console.log(`Runtime: ${(end - start) / 1000} seconds (maybe make this mins:seconds????)`);
-//     console.log(`Total rice: ${sesh.runningTotal}`);
-// })().then(_ => process.exit());
+console.log(`Runtime: ${(end - start) / 1000} seconds (maybe make this mins:seconds????)`);
+console.log(`Total rice: ${sesh.runningTotal}`);
+process.exit();
 
 function sleep(ms) {
     console.log("Sleeping");
