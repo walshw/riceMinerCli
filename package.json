@@ -1,0 +1,24 @@
+{
+  "name": "riceminer",
+  "version": "1.0.0",
+  "description": "",
+  "main": "miner.js",
+  "dependencies": {
+    "axios": "^0.26.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/walshw/riceMinerCli.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/walshw/riceMinerCli/issues"
+  },
+  "homepage": "https://github.com/walshw/riceMinerCli#readme",
+  "type":"module"
+}

@@ -49,4 +49,4 @@ function isNumber(character) {
     return asciiVal >= 48 && asciiVal <= 57 ? true : false;
 }
 
-module.exports = { multiply };
+export { multiply };
