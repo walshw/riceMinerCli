@@ -1,4 +1,4 @@
-import { multiply } from './multiplicationTokenizer.js';
+import { multiply } from './MultiplicationTokenizer.js';
 import axios from 'axios';
 
 export default class Session {
